@@ -1,0 +1,33 @@
+pipeline {
+  agent { label "build" }
+  stages {
+    stage('0') {
+      parallel {
+        stage('1') {
+          stages {
+            stage('1-1') {
+              steps {
+                sh '''echo hoge'''
+              }
+            }
+            stage('1-2') {
+              steps {
+                sh '''echo fuga'''
+              }
+            }
+          }
+        }
+        stage('2') {
+          steps {
+          sh '''echo piyo'''
+          }
+        }
+      }
+    }
+    stage('3') {
+      steps {
+        sh '''echo moo'''
+      }
+    }
+  }
+}
